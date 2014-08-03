@@ -1,0 +1,50 @@
+GIT
+  remote: git@github.com:sparklemotion/mechanize.git
+  revision: c3c3b6ef217e38b373d19608210c92f92803b54a
+  specs:
+    mechanize (2.7.4.beta2)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2, < 3)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.6)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.0)
+    domain_name (0.5.19)
+      unf (>= 0.0.5, < 1.0.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    method_source (0.8.2)
+    mime-types (2.3)
+    mini_portile (0.6.0)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
+    ntlm-http (0.1.1)
+    parallel (1.1.2)
+    pry (0.10.0)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    ruby-progressbar (1.5.1)
+    slop (3.6.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.6)
+    webrobots (0.1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mechanize!
+  parallel
+  pry
+  ruby-progressbar
