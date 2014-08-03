@@ -7,12 +7,14 @@ require 'ruby-progressbar'
 # require 'thread'
 
 class ImageScraper
-  def initialize
+  def initialize(hash = {})
     @agent = Mechanize.new
     @logged_in = false
     @image_count = Hash.new(0)
     @links = Hash.new
     @progress = Hash.new
+    @options = hash
+    @options[:save_to] ||= './'
   end
 
   def login_wallbase(name, password)
@@ -58,7 +60,7 @@ class ImageScraper
   end
 
   def fetch_images(query)
-    @agent.pluggable_parser['image'] = Mechanize::DirectorySaver.save_to("/store/wallbase/#{query}", {:overwrite => true})
+    @agent.pluggable_parser['image'] = Mechanize::DirectorySaver.save_to("#{@options[:save_to]}/#{query}", {:overwrite => true})
     @progress[query].progress = 0
     @progress[query].title = "Downloading #{query}"
     @progress[query].total = @image_count[query]
@@ -70,9 +72,7 @@ class ImageScraper
   end
 
   def fetch_query(query, purity, amount=nil)
-    unless amount
-      amount = 64 # Default value
-    end
+    amount ||= 64 # Default value
 
     @progress[query] = ProgressBar.create(:title => "Preparing links for '#{query}'", :total => nil, :format => "%t: |%B| %c/#{amount}")
 
@@ -87,6 +87,6 @@ end
 
 # Use it in following order,
 # You can fetch images without login, just set purity as 110
-# @wallbase = ImageScraper.new
+# @wallbase = ImageScraper.new({:save_to => '/store/wallbase'})
 # @wallbase.login_wallbase _, _ # Your yousername and password is going here
 # @wallbase.fetch_query 'girls', 111
